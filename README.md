@@ -116,7 +116,6 @@ make erase
   
 https://github.com/user-attachments/assets/5a41c17e-0822-4a1c-9189-5eb2eeea05ab 
 - **led_brightness.mp4** – Hardware breathing LED demo
-  
 https://github.com/user-attachments/assets/2f4ab491-74e6-4e53-916a-97ff0569ac39
 ---
 
