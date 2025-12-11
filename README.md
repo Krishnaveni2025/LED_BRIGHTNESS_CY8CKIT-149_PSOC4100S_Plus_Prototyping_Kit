@@ -1,91 +1,140 @@
 # LED_BRIGHTNESS_CY8CKIT-149_PSOC4100S_Plus_Prototyping_Kit
 
 
-# LED Brightness Control on CY8CKIT-149 PSoC 4100S Plus Prototyping Kit
+Krishnaveni, this is already a **strong and complete README**, and it reflects your bare‑metal understanding beautifully. If your intention is to **polish it for GitHub**, I can help you turn this into a clean, professional, well‑formatted README.md that looks like something a firmware engineer would proudly showcase.
 
-## Description
-This project demonstrates how to control the brightness of an LED using Pulse Width Modulation (PWM) on the CY8CKIT-149 PSoC 4100S Plus Prototyping Kit. The application is written in bare-metal C, utilizing direct register access to configure the device's resources.
+Here is a refined, GitHub‑ready version with structure, clarity, and formatting:
 
-The program creates a "breathing" or fading effect where the LED gradually brightens and then dims in a continuous loop.
+---
 
-## Functionality
-- **PWM Generation**: Uses the PSoC 4 TCPWM (Timer, Counter, PWM) block (specifically Timer 3) to generate a PWM signal.
-- **Clocking**: Configures the high-frequency clock (HFCLK) and a peripheral clock divider to drive the PWM block.
-- **GPIO**: Configures Pin **P1.2** (connected to a user LED on the kit) as the PWM output.
-- **Control Loop**: Continuously updates the PWM compare value in a loop to change the duty cycle, creating the fading effect.
+# LED Brightness Control on CY8CKIT‑149 (PSoC 4100S Plus)
 
-## Hardware Requirements
-- **CY8CKIT-149 PSoC 4100S Plus Prototyping Kit**
-- Micro-USB cable for power and programming.
+This project demonstrates how to control the brightness of an LED using **Pulse Width Modulation (PWM)** on the **CY8CKIT‑149 PSoC 4100S Plus Prototyping Kit**.  
+The application is written in **bare‑metal C**, using **direct register access** to configure clocks, GPIO, and the TCPWM block.
 
-## Software Prerequisites
-- **Arm GNU Toolchain**: `arm-none-eabi-gcc` and related tools must be in your PATH.
-- **OpenOCD**: For flashing the firmware to the device.
-- **Make**: For running the build scripts.
-- **Visual Studio Code** (Optional): A recommended editor for viewing and editing the code.
+The result is a smooth **breathing / fading LED effect**, where the LED gradually brightens and dims in a continuous loop.
 
-## Environment Setup
-Ensure you have the `path_name` environment variable set, pointing to your course or tools directory if your setup relies on it (specifically for locating OpenOCD).
+---
 
-## Project Structure
-- `main.c`: Main entry point. Initializes clocks, GPIO, and PWM, then enters the brightness control loop.
-- `pwm.c`: Contains the implementation for:
-  - `led_init()`: Configures P1.2 as a digital output driven by the TCPWM block.
-  - `init_peri_Clock_Config()`: Sets up the peripheral clock divider for the PWM.
-  - `pwm_init()`: Configures TCPWM3 for PWM mode.
-  - `brightness_control()`: Updates the PWM duty cycle to simulate brightness changes.
-- `pwm.h`: Header file for PWM functions and definitions.
-- `psoc_startup.c`: Startup code and interrupt vector table.
-- `psoclinker.ld`: Linker script defining memory layout.
-- `Makefile`: Directives for compiling, linking, and flashing the project.
+## ✨ Features
 
-## Build Instructions
-To build the project, open a terminal in the project directory and run:
+### ✅ PWM Generation  
+Uses the **TCPWM block (Timer 3)** to generate a PWM waveform.
 
-```bash
+### ✅ Clock Configuration  
+Configures HFCLK and a **peripheral clock divider** to drive the PWM block.
+
+### ✅ GPIO Routing  
+Pin **P1.2** is configured as the PWM output using the **HSIOM** multiplexer.
+
+### ✅ Brightness Control Loop  
+The duty cycle is updated in software to create a smooth fade‑in / fade‑out effect.
+
+---
+
+## 🧰 Hardware Requirements
+- CY8CKIT‑149 PSoC 4100S Plus Prototyping Kit  
+- Micro‑USB cable  
+
+---
+
+## 🛠️ Software Requirements
+- **Arm GNU Toolchain** (`arm-none-eabi-gcc`)  
+- **OpenOCD** (for flashing)  
+- **Make**  
+- **VS Code** (optional but recommended)
+
+Ensure the `path_name` environment variable is set correctly if your setup depends on it for locating OpenOCD.
+
+---
+
+## 📁 Project Structure
+
+| File | Description |
+|------|-------------|
+| **main.c** | Initializes clocks, GPIO, PWM, and runs the brightness loop |
+| **pwm.c** | Contains `led_init()`, `init_peri_Clock_Config()`, `pwm_init()`, `brightness_control()` |
+| **pwm.h** | Function prototypes and PWM definitions |
+| **psoc_startup.c** | Startup code + vector table |
+| **psoclinker.ld** | Linker script defining memory layout |
+| **Makefile** | Build, clean, flash, and erase commands |
+
+---
+
+## 🏗️ Build Instructions
+
+### Build:
+```
 make
 ```
 
-This will compile the source files and generate the following artifacts:
-- `brightness_control.elf`: The executable linkable format file.
-- `brightness_control.hex`: The hex file used for flashing.
+Artifacts generated:
+- `brightness_control.elf`
+- `brightness_control.hex`
 
-To clean the build artifacts:
-
-```bash
+### Clean:
+```
 make clean
 ```
 
-## Flashing Instructions
-To flash the compiled firmware onto the PSoC 4100S Plus kit, ensure the board is connected via USB and run:
+---
 
-```bash
+## 🔥 Flashing Instructions
+
+Flash firmware:
+```
 make program
 ```
 
-This command uses OpenOCD to program the `.hex` file onto the device.
-
-To perform a mass erase of the device:
-
-```bash
+Mass erase:
+```
 make erase
 ```
 
-## How It Works
-1.  **Clock Setup**: The system clock is configured, and a peripheral clock divider is set up to provide a clock source to the TCPWM block.
-2.  **GPIO Routing**: Pin P1.2 is configured to be driven by the TCPWM block via the High-Speed I/O Matrix (HSIOM).
-3.  **PWM Configuration**: Timer 3 is configured in PWM mode with a specific period.
-4.  **Main Loop**:
-    - The `brightness` variable determines the PWM compare value (duty cycle).
-    - In each iteration, `brightness` is incremented or decremented by a fixed step.
-    - When `brightness` reaches the maximum (10000) or minimum (0), the direction changes.
-    - A simple software delay (loop) controls the speed of the fading effect.
+---
 
-https://github.com/user-attachments/assets/5a41c17e-0822-4a1c-9189-5eb2eeea05ab
+## ⚙️ How It Works
+
+### 1. **Clock Setup**
+- HFCLK configured  
+- Peripheral divider provides clock to TCPWM3  
+
+### 2. **GPIO Routing**
+- P1.2 is mapped to TCPWM3 output via HSIOM  
+
+### 3. **PWM Configuration**
+- Timer 3 configured in PWM mode  
+- Period register defines PWM frequency  
+- Compare register defines duty cycle  
+
+### 4. **Brightness Loop**
+- Duty cycle increases from 0 → 10000  
+- Then decreases from 10000 → 0  
+- Direction flips at boundaries  
+- Software delay controls fade speed  
+
+---
+
+## 🎥 Demo Videos
+
+- **led_brightness_controll.mp4** – Execution video (flashing + output)
+
+  
+https://github.com/user-attachments/assets/5a41c17e-0822-4a1c-9189-5eb2eeea05ab 
+- **led_brightness.mp4** – Hardware breathing LED demo  
+**
+https://github.com/user-attachments/assets/2f4ab491-74e6-4e53-916a-97ff0569ac39**
+---
+
+## ✅ GitHub Repository  
+https://github.com/Krishnaveni2025/LED_BRIGHTNESS_CY8CKIT-149_PSOC4100S_Plus_Prototyping_Kit
+
+---
 
 
 
-https://github.com/user-attachments/assets/2f4ab491-74e6-4e53-916a-97ff0569ac39
+
+
 
 
       
