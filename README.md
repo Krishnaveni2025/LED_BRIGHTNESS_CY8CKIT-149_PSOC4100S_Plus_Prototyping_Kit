@@ -1,12 +1,5 @@
 # LED_BRIGHTNESS_CY8CKIT-149_PSOC4100S_Plus_Prototyping_Kit
 
-
-Krishnaveni, this is already a **strong and complete README**, and it reflects your bare‑metal understanding beautifully. If your intention is to **polish it for GitHub**, I can help you turn this into a clean, professional, well‑formatted README.md that looks like something a firmware engineer would proudly showcase.
-
-Here is a refined, GitHub‑ready version with structure, clarity, and formatting:
-
----
-
 # LED Brightness Control on CY8CKIT‑149 (PSoC 4100S Plus)
 
 This project demonstrates how to control the brightness of an LED using **Pulse Width Modulation (PWM)** on the **CY8CKIT‑149 PSoC 4100S Plus Prototyping Kit**.  
@@ -65,12 +58,13 @@ Ensure the `path_name` environment variable is set correctly if your setup depen
 
 ### Build:
 ```
-make
+make all
 ```
 
 Artifacts generated:
 - `brightness_control.elf`
 - `brightness_control.hex`
+- object files of c source files
 
 ### Clean:
 ```
@@ -108,8 +102,8 @@ make erase
 - Compare register defines duty cycle  
 
 ### 4. **Brightness Loop**
-- Duty cycle increases from 0 → 10000  
-- Then decreases from 10000 → 0  
+- Duty cycle increases from 0 → 100  
+- Then decreases from 100 → 0  
 - Direction flips at boundaries  
 - Software delay controls fade speed  
 
@@ -121,9 +115,9 @@ make erase
 
   
 https://github.com/user-attachments/assets/5a41c17e-0822-4a1c-9189-5eb2eeea05ab 
-- **led_brightness.mp4** – Hardware breathing LED demo  
-**
-https://github.com/user-attachments/assets/2f4ab491-74e6-4e53-916a-97ff0569ac39**
+- **led_brightness.mp4** – Hardware breathing LED demo
+  
+https://github.com/user-attachments/assets/2f4ab491-74e6-4e53-916a-97ff0569ac39
 ---
 
 ## ✅ GitHub Repository  
